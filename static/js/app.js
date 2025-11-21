@@ -102,33 +102,25 @@ $(function () {
     function adjustHeader()
     {
         var windowWidth = $(window).width();
-        if (windowWidth > 0) {
-            var $logoImg = $('.company-logo img');
-            var defaultLogo = $logoImg.attr('data-default-logo') || $logoImg.attr('src');
-            var stickyLogo = $logoImg.attr('data-sticky-logo') || defaultLogo;
-
+        if(windowWidth > 0) {
             if ($(document).scrollTop() >= 100) {
-                if ($('.header-shrink').length < 1) {
+                if($('.header-shrink').length < 1) {
                     $('.sticky-header').addClass('header-shrink');
                 }
-                if ($('.do-sticky').length < 1) {
-                    $logoImg.attr('src', stickyLogo);
+                if($('.do-sticky').length < 1) {
+                    $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
                 }
-            } else {
+            }
+            else {
                 $('.sticky-header').removeClass('header-shrink');
-                if ($('.do-sticky').length < 1 && $('.fixed-header').length == 0 && $('.fixed-header2').length == 0) {
-                    $logoImg.attr('src', defaultLogo);
+                if($('.do-sticky').length < 1 && $('.fixed-header').length == 0 && $('.fixed-header2').length == 0) {
+                    $('.company-logo img').attr('src', '../static/img/logos/logo.png');
                 } else {
-                    $logoImg.attr('src', stickyLogo);
+                    $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
                 }
             }
         } else {
-            // Fallback for very small widths: always use sticky logo
-            $('.company-logo img').each(function () {
-                var $img = $(this);
-                var stickyLogo = $img.attr('data-sticky-logo') || $img.attr('src');
-                $img.attr('src', stickyLogo);
-            });
+            $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
         }
     }
 
@@ -326,9 +318,9 @@ $(function () {
 
     // Background video playing script
     $(document).ready(function () {
-        $(".player").mb_YTPlayer(
+            $(".player").mb_YTPlayer(
             {
-                mobileFallbackImage: 'img/banner/banner-1.jpg'
+                mobileFallbackImage: '/static/img/banner/banner-1.jpg'
             }
         );
     });
@@ -464,7 +456,7 @@ $(function () {
     }
     $(document).on('click', '.color-plate', function () {
         var name = $(this).attr('data-color');
-        $('link[id="style_sheet"]').attr('href', 'css/skins/' + name + '.css');
+        $('link[id="style_sheet"]').attr('href', '/static/css/skins/' + name + '.css');
     });
 
     $(document).on('click', '.setting-button', function () {
@@ -487,3 +479,7 @@ $(function () {
         }
     }).trigger("resize");
 })(jQuery);
+
+setTimeout(function(){
+  $('#message').fadeOut('slow')
+},4000)
