@@ -18,6 +18,7 @@ div.breadcrumbs{
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button{
   background-color: #4e5557;
+  color:  #000 !important;
 }
 
 .button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover{
@@ -34,4 +35,8 @@ div.breadcrumbs{
 
 a:link, a:visited{
   color: #1c1f1f;
+}
+
+#logout-form button {
+  color: #000 !important;
 }
