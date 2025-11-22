@@ -160,7 +160,11 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
-# Skip the intermediate "You are about to sign in using a third-party account" page
-# and immediately start the Google OAuth handshake on GET.
-# NOTE: This relaxes the default CSRF/open-redirect protection; use only if acceptable.
 SOCIALACCOUNT_LOGIN_ON_GET = True
+
+#Email sending
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'm.maugeri2828@gmail.com'
+EMAIL_HOST_PASSWORD = 'yqks xxbe tjsu mqea'
+EMAIL_USE_TLS = True
