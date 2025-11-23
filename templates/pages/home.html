@@ -12,8 +12,8 @@
             <div class="carousel-item banner-max-height active item-bg">
                 <img class="d-block w-100 h-100" src="{% static 'img/car-1.jpg' %}" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
-                    <h3 style="color: red;">Wow Factor Standard</h3>
-                    <h5 style="color: white;">Allow us to guide you through the innovative stress<br>
+                    <h3 style="color: red;">Explore Our Latest Models</h3>
+                    <h5 style="color: white;">Browse our wide selection of new and pre-owned vehicles to find your perfect match<br>
                         free approach in finding your dream car.</h5>
                     <a href="{% url 'services' %}" class="btn btn-lg btn-theme">Read more</a>
                 </div>
@@ -21,8 +21,8 @@
             <div class="carousel-item banner-max-height item-bg">
                 <img class="d-block w-100 h-100" src="{% static 'img/car-2.jpg' %}" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
-                    <h3 style="color: red;">Explore Your Dream Car</h3>
-                    <h5 style="color: white;" >Allow us to guide you through the innovative stress<br>
+                    <h3 style="color: red;">Expert Repairs</h3>
+                    <h5 style="color: white;" >Our expert team offers top-notch repair services to keep your vehicle running like new<br>
                         free approach in finding your dream car.</h5>
                     <a href="{% url 'services' %}" class="btn btn-lg btn-theme">Read more</a>
                 </div>
@@ -30,9 +30,9 @@
             <div class="carousel-item banner-max-height item-bg">
                 <img class="d-block w-100 h-100" src="{% static 'img/car-3.jpg' %}" alt="banner">
                 <div class="carousel-content container banner-info-2 bi-2 text-left">
-                    <h3 style="color: red;">We Are Wheel</h3>
-                    <h5 style="color: white;" >Allow us to guide you through the innovative stress<br>
-                        free approach in finding your dream car.</h5>
+                    <h3 style="color: red;">Trade In & Trade Up</h3>
+                    <h5 style="color: white;" >Looking to upgrade? We offer competitive trade-in values to help<br>
+                         you get behind the wheel of your next car.</h5>
                     <a href="{% url 'services' %}" class="btn btn-lg btn-theme">Read more</a>
                 </div>
             </div>
@@ -111,7 +111,7 @@
         <!-- Main title -->
         <div class="main-title">
             <h1>Featured <span>Cars</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Explore our featured vehicles today.</p>
         </div>
         <!-- Slick slider area start -->
         <div class="slick-slider-area clearfix">
@@ -210,7 +210,7 @@
         <!-- Main title -->
         <div class="main-title">
             <h1>Latest <span>Cars</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Browse the newest arrivals in our inventory.</p>
         </div>
         <div class="row">
           {% for car in all_cars %}
@@ -301,7 +301,7 @@
         <!-- Main title -->
         <div class="main-title">
             <h1>Executive <span>Team</span></h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+            <p>Meet the visionaries behind AutoMarket’s growth and success</p>
         </div>
         <!-- Slick slider area start -->
         <div class="slick-slider-area clearfix">
@@ -313,11 +313,6 @@
                             <a href="#">
                                 <img src="{{ team.photo.url }}" alt="team-1" class="img-fluid">
                             </a>
-                            <div class="social-list clearfix">
-                                <a href="{{team.facebook_link}}" target="_blank" class="facebook-bg"><i class="fa fa-facebook"></i></a>
-                                <a href="{{team.twitter_link}}" target="_blank" class="twitter-bg"><i class="fa fa-twitter"></i></a>
-                                <a href="{{team.google_plus_link}}" target="_blank" class="google-bg"><i class="fa fa-google"></i></a>
-                            </div>
                         </div>
                         <div class="details">
                             <h4><a href="team-detail.html">{{team.first_name}}  {{team.last_name}}</a></h4>
