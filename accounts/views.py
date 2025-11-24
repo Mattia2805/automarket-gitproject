@@ -3,6 +3,8 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from contacts.models import Contact
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 def login(request):
     if request.method == 'POST':
@@ -32,6 +34,14 @@ def register(request):
         # Password match check
         if password != confirm_password:
             messages.error(request, 'Passwords do not match')
+            return redirect('register')
+
+        # Validate password strength
+        try:
+            validate_password(password)
+        except ValidationError as e:
+            for error in e:
+                messages.error(request, error)
             return redirect('register')
 
         # Username exists?
