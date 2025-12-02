@@ -1,38 +1,48 @@
 <!-- Top header start -->
 <header class="top-header th-2 top-header-bg">
     <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
             <div class="col-lg-8 col-md-8 col-sm-7">
-                <div class="list-inline">
-                    <a href="tel:+55-4XX-634-7071"><i class="fa fa-phone"></i>+355 069 341 7832</a>
-                    <a href="tel:info@themevessel.com"><i class="fa fa-envelope"></i>contact@automarket.com</a>
-                    <a href="tel:info@themevessel.com"><i class="fa fa-clock-o"></i>Mon - Sun: 8:00am - 6:00pm</a>
+                <div class="list-inline mb-0">
+                    <a href="tel:+355-069-341-7832" class="list-inline-item me-2 small">
+                        <i class="fa fa-phone"></i> +355 069 341 7832
+                    </a>
+                    <a href="mailto:contact@automarket.com" class="list-inline-item me-2 small">
+                        <i class="fa fa-envelope"></i> contact@automarket.com
+                    </a>
+                    <span class="list-inline-item small">
+                        <i class="fa fa-clock-o"></i> Mon - Sun: 8:00am - 6:00pm
+                    </span>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-5">
-                <ul class="top-social-media pull-right">
-
+                <div class="d-flex justify-content-end align-items-center flex-nowrap">
                   {% if user.is_authenticated %}
-                  <li>
-                      <a href="{% url 'dashboard' %}" class="sign-in"><i class="fa fa-tachometer"></i> Dashboard</a>
-                  </li>
+                    {% if user.is_staff or user.is_superuser %}
+                      <a href="{% url 'admin:index' %}" class="btn btn-sm btn-outline-light me-1 py-0 px-2 small">
+                          <i class="fa fa-cog"></i> Admin
+                      </a>
+                    {% endif %}
 
-                  <li>
-                      <a href="javascript:{document.getElementById('logout').submit()}" class="sign-in"><i class="fa fa-sign-out"></i> Logout</a>
-                      <form action="{% url 'logout' %}" id="logout" method="POST">
+                    <a href="{% url 'dashboard' %}" class="btn btn-sm btn-outline-light me-1 py-0 px-2 small">
+                        <i class="fa fa-tachometer"></i> Dashboard
+                    </a>
+
+                    <form action="{% url 'logout' %}" method="POST" class="d-inline m-0 p-0">
                         {% csrf_token %}
-                        <input type="hidden">
-                      </form>
-                  </li>
+                        <button type="submit" class="btn btn-sm btn-outline-light py-0 px-2 small">
+                            <i class="fa fa-sign-out"></i> Logout
+                        </button>
+                    </form>
                   {% else %}
-                    <li>
-                        <a href="{% url 'login' %}" class="sign-in"><i class="fa fa-sign-in"></i> Login</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'register' %}" class="sign-in"><i class="fa fa-user"></i> Register</a>
-                    </li>
+                    <a href="{% url 'login' %}" class="btn btn-sm btn-outline-light me-1 py-0 px-2 small">
+                        <i class="fa fa-sign-in"></i> Login
+                    </a>
+                    <a href="{% url 'register' %}" class="btn btn-sm btn-outline-light py-0 px-2 small">
+                        <i class="fa fa-user"></i> Register
+                    </a>
                   {% endif %}
-                </ul>
+                </div>
             </div>
         </div>
     </div>

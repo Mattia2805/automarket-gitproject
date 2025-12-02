@@ -95,6 +95,7 @@ class Car(models.Model):
     fuel_consumption = models.IntegerField()
     fuel_type = models.CharField(max_length=50)
     no_of_owners = models.CharField(max_length=100)
+    car_history_report = RichTextField(blank=True, null=True)
     is_featured = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=datetime.now, blank=True)
 

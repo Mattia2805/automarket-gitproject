@@ -37,27 +37,52 @@ def about(request):
 def services(request):
     return render(request, 'pages/services.html')
 
+
 def contact(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        subject = request.POST['subject']
-        phone = request.POST['phone']
-        message = request.POST['message']
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        phone = request.POST.get('phone')
+        message = request.POST.get('message')
 
-        email_subject = 'You have a new message from AutoMarket regarding' + subject
-        message_body = 'Name: ' + name + '. Email: ' + email + '. Phone: ' + phone + '. Message: ' + message
+        # Professional email template
+        email_subject = f"New Contact Message from AutoMarket: {subject}"
+        message_body = f"""
+        You have received a new message from AutoMarket website.
 
-        admin_info = User.objects.get(is_superuser=True)
-        admin_email = admin_info.email
-        send_mail(
-            email_subject,
-            message_body,
-            "m.maugeri2828@gmail.com",
-            [admin_email],
-            fail_silently=False,
-          )
-        messages.success(request, 'Thank you for contacting us. We will get back to you shorty')
-        return redirect(contact)
+        ----------------------------
+        Sender Information:
+        ----------------------------
+        Name: {name}
+        Email: {email}
+        Phone: {phone}
+
+        ----------------------------
+        Message:
+        ----------------------------
+        {message}
+
+        ----------------------------
+        Please respond promptly to the sender.
+        ----------------------------
+        """
+
+        try:
+            admin_info = User.objects.filter(is_superuser=True).first()
+            admin_email = admin_info.email if admin_info else "admin@example.com"
+
+            send_mail(
+                email_subject,
+                message_body,
+                "m.maugeri2828@gmail.com",  
+                [admin_email],
+                fail_silently=False,
+            )
+            messages.success(request, 'Thank you for contacting us. We will get back to you shortly.')
+        except Exception as e:
+            messages.error(request, f"An error occurred while sending your message: {e}")
+
+        return redirect('contact')  
 
     return render(request, 'pages/contact.html')

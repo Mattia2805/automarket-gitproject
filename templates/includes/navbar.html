@@ -1,79 +1,57 @@
 {% load static %}
-<!-- Main header start -->
 <header class="main-header sticky-header header-with-top">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light my-navbar">
+           
+            <!-- Logo -->
             <a class="navbar-brand company-logo" href="{% url 'home' %}">
                 <img src="{% static 'img/logos/black-logo.png' %}" alt="logo">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+
+            <!-- Mobile Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
                 <span class="fa fa-bars"></span>
             </button>
-            <div class="navbar-collapse collapse w-100" id="navbar">
-                <ul class="navbar-nav ml-auto">
+
+            <div class="collapse navbar-collapse w-100" id="navbar">
+                <ul class="navbar-nav ml-auto align-items-center">
+
                     <li class="nav-item">
-                        <a
-                        {% if '/' == request.path %}
-                        class="nav-link active"
-                        {% else %}
-                        class="nav-link"
-                        {% endif %}
-                        href="{% url 'home' %}" >
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                        {% if 'cars' in request.path %}
-                        class="nav-link active"
-                        {% else %}
-                        class="nav-link"
-                        {% endif %}
-                         href="{% url 'cars' %}">
-                            Cars
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                        {% if 'about' in request.path %}
-                        class="nav-link active"
-                        {% else %}
-                        class="nav-link"
-                        {% endif %}
-                         href="{% url 'about' %}">
-                            About
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                        {% if 'services' in request.path %}
-                        class="nav-link active"
-                        {% else %}
-                        class="nav-link"
-                        {% endif %}
-                         href="{% url 'services' %}">
-                            Services
-                        </a>
+                        <a class="nav-link {% if '/' == request.path %}active{% endif %}"
+                           href="{% url 'home' %}">Home</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'cars' in request.path %}active{% endif %}"
+                           href="{% url 'cars' %}">Cars</a>
+                    </li>
 
-                    <li class="nav-item dropdown">
-                        <a
-                        {% if 'contact' in request.path %}
-                        class="nav-link active"
-                        {% else %}
-                        class="nav-link"
-                        {% endif %}
-                         href="{% url 'contact' %}">Contact</a>
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'about' in request.path %}active{% endif %}"
+                           href="{% url 'about' %}">About</a>
                     </li>
-                    <li class="nav-item dropdown m-hide">
-                        <a href="#full-page-search" class="nav-link h-icon">
-                            <i class="fa fa-search"></i>
-                        </a>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'services' in request.path %}active{% endif %}"
+                           href="{% url 'services' %}">Services</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if 'contact' in request.path %}active{% endif %}"
+                           href="{% url 'contact' %}">Contact</a>
+                    </li>
+
+                    <!-- Search -->
+                    <li class="nav-item ms-3">
+                        <form action="{% url 'search' %}" method="get" class="dynamic-search m-0">
+                            <input type="text" name="keyword" class="search-input" placeholder="Search...">
+                            <button class="search-btn"><i class="fa fa-search"></i></button>
+                        </form>
+                    </li>
+
                 </ul>
             </div>
+
         </nav>
     </div>
 </header>
-<!-- Main header end -->

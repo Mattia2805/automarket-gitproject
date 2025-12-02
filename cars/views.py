@@ -1,6 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Car
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import get_object_or_404
+from django.contrib.admin.views.decorators import staff_member_required
+from .models import Car
+from .pdf_utils import generate_car_report
 
 # List cars with pagination
 def cars(request):
@@ -95,3 +99,8 @@ def search(request):
         'transmission_search': transmission_search,
     }
     return render(request, 'cars/search.html', data)
+
+@staff_member_required
+def car_report_pdf(request, car_id):
+    car = get_object_or_404(Car, pk=car_id)
+    return generate_car_report(car)

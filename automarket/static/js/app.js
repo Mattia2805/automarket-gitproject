@@ -368,20 +368,21 @@ $(function () {
 
 
     // Full  Page Search Activation
-    $(function () {
-        $('a[href="#full-page-search"]').on('click', function(event) {
-            event.preventDefault();
-            $('#full-page-search').addClass('open');
-            $('#full-page-search > form > input[type="search"]').focus();
+        $(function () {
+            $('a[href="#full-page-search"]').on('click', function(event) {
+                event.preventDefault();
+                $('#full-page-search').addClass('open');
+                $('#full-page-search > form > input[type="search"]').focus();
+            });
+
+            $('#full-page-search, #full-page-search button.close').on('click keyup', function(event) {
+                if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+                    $(this).removeClass('open');
+                }
+            });
         });
 
-        $('#full-page-search, #full-page-search button.close').on('click keyup', function(event) {
-            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-                $(this).removeClass('open');
-            }
-        });
-    });
-
+   
 
     // Slick Sliders
     $('.slick-carousel').each(function () {
@@ -484,3 +485,16 @@ $(function () {
 setTimeout(function(){
   $('#message').fadeOut('slow')
 },4000)
+
+// Navbar scroll color toggle
+$(function () {
+    var header = $('.main-header');
+
+    $(window).on('scroll', function () {
+        if ($(this).scrollTop() > 50) {
+            header.addClass('scrolled');
+        } else {
+            header.removeClass('scrolled');
+        }
+    });
+});

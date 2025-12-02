@@ -7926,6 +7926,7 @@ table {
 /** Option Panel **/
 
 /** Full page search **/
+/**
 #full-page-search {
     position: fixed;
     top: 0px;
@@ -7974,12 +7975,69 @@ table {
     border-radius: 3px;
     font-size: 17px;
 }
-
+   
 .search-header{
     max-width: 400px;
     margin: 0 auto;
 }
+     **/
 
+.dynamic-search {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    border: none;
+    border-bottom: 1px solid transparent; /* invisible initially */
+    background: transparent;
+    outline: none;
+    width: 0;
+    transition: width 0.3s ease, border-color 0.3s ease;
+    font-size: 14px;
+    padding: 2px 4px;
+    color: #fff; /* text color */
+    cursor: pointer;
+}
+
+.dynamic-search:hover .search-input,
+.search-input:focus {
+    width: 150px;
+    border-color: #fff; /* underline appears on hover/focus */
+    cursor: text;
+}
+
+.search-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 2px 6px;
+    color: #fff; /* icon color */
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.search-btn:hover {
+    color: #ddd; /* lighter on hover */
+}
+
+/* Navbar scrolled: white background */
+.navbar.scrolled .search-input {
+    border-bottom: 1px solid transparent; /* invisible initially */
+    color: #333; /* text color */
+}
+
+.navbar.scrolled .dynamic-search:hover .search-input,
+.navbar.scrolled .search-input:focus {
+    border-color: #333; /* dark underline on hover/focus */
+}
+
+.navbar.scrolled .search-btn i {
+    color: #333; /* icon color */
+}
+
+/**
 #full-page-search .btn {
     position: absolute;
     top: 50%;
@@ -8002,6 +8060,7 @@ table {
     border-radius: 3px;
     background: #3a3a3a;
 }
+**/
 
 /* Mtb **/
 .mtb-50 {

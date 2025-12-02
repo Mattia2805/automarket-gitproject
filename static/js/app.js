@@ -108,19 +108,20 @@ $(function () {
                     $('.sticky-header').addClass('header-shrink');
                 }
                 if($('.do-sticky').length < 1) {
-                    $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
+                    // Use absolute path so it works on all URLs (including /accounts/login/)
+                    $('.company-logo img').attr('src', '/static/img/logos/black-logo.png');
                 }
             }
             else {
                 $('.sticky-header').removeClass('header-shrink');
                 if($('.do-sticky').length < 1 && $('.fixed-header').length == 0 && $('.fixed-header2').length == 0) {
-                    $('.company-logo img').attr('src', '../static/img/logos/logo.png');
+                    $('.company-logo img').attr('src', '/static/img/logos/logo.png');
                 } else {
-                    $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
+                    $('.company-logo img').attr('src', '/static/img/logos/black-logo.png');
                 }
             }
         } else {
-            $('.company-logo img').attr('src', '../static/img/logos/black-logo.png');
+            $('.company-logo img').attr('src', '/static/img/logos/black-logo.png');
         }
     }
 
@@ -367,20 +368,21 @@ $(function () {
 
 
     // Full  Page Search Activation
-    $(function () {
-        $('a[href="#full-page-search"]').on('click', function(event) {
-            event.preventDefault();
-            $('#full-page-search').addClass('open');
-            $('#full-page-search > form > input[type="search"]').focus();
+        $(function () {
+            $('a[href="#full-page-search"]').on('click', function(event) {
+                event.preventDefault();
+                $('#full-page-search').addClass('open');
+                $('#full-page-search > form > input[type="search"]').focus();
+            });
+
+            $('#full-page-search, #full-page-search button.close').on('click keyup', function(event) {
+                if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+                    $(this).removeClass('open');
+                }
+            });
         });
 
-        $('#full-page-search, #full-page-search button.close').on('click keyup', function(event) {
-            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
-                $(this).removeClass('open');
-            }
-        });
-    });
-
+   
 
     // Slick Sliders
     $('.slick-carousel').each(function () {
@@ -483,3 +485,16 @@ $(function () {
 setTimeout(function(){
   $('#message').fadeOut('slow')
 },4000)
+
+// Navbar scroll color toggle
+$(function () {
+    var navbar = $('.navbar');
+
+    $(window).on('scroll', function () {
+        if ($(this).scrollTop() > 50) { // adjust scroll threshold
+            navbar.addClass('scrolled');
+        } else {
+            navbar.removeClass('scrolled');
+        }
+    });
+});
