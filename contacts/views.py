@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
 def inquiry(request):
+    """Persist a car inquiry and notify site administrators via email."""
     if request.method == 'POST':
         car_id = request.POST.get('car_id')
         car_title = request.POST.get('car_title')

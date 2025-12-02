@@ -1,3 +1,9 @@
+/**
+ * AutoMarket front-end behavior: initializes layout helpers, sliders, counters,
+ * color schemes, and various UI widgets used across the site.
+ *
+ * Relies on jQuery and several third-party plugins loaded globally (slick, Dropzone, lightGallery, etc.).
+ */
 $(function () {
 
     'use strict';

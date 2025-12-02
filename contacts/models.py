@@ -3,6 +3,7 @@ from datetime import datetime
 
 # Create your models here.
 class Contact(models.Model):
+    """Lead data captured when a user submits an inquiry for a specific car listing."""
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     car_id = models.IntegerField()

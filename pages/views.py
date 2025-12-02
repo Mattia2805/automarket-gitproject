@@ -8,6 +8,7 @@ from django.contrib import messages
 # Create your views here.
 
 def home(request):
+    """Landing page: show featured cars, all cars, and search facets for quick filtering."""
     teams = Team.objects.all()
     featured_cars = Car.objects.order_by('-created_date').filter(is_featured=True)
     all_cars = Car.objects.order_by('-created_date')
@@ -28,6 +29,7 @@ def home(request):
 
 
 def about(request):
+    """Static about page listing team members."""
     teams = Team.objects.all()
     data = {
         'teams' : teams,
@@ -35,10 +37,12 @@ def about(request):
     return render(request, 'pages/about.html', data)
 
 def services(request):
+    """Static services page describing offering/services of AutoMarket."""
     return render(request, 'pages/services.html')
 
 
 def contact(request):
+    """General contact form endpoint that sends an email to the site administrator."""
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')

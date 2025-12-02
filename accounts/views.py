@@ -7,6 +7,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 
 def login(request):
+    """Authenticate a user by username/password and redirect to the dashboard on success."""
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -23,6 +24,7 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 def register(request):
+    """Register a new user account and log the user in after successful validation."""
     if request.method == 'POST':
         firstname = request.POST['firstname']
         lastname = request.POST['lastname']
@@ -36,7 +38,7 @@ def register(request):
             messages.error(request, 'Passwords do not match')
             return redirect('register')
 
-        # Validate password strength
+        # Validate password strength against Django's configured validators
         try:
             validate_password(password)
         except ValidationError as e:
@@ -75,6 +77,7 @@ def register(request):
 
 @login_required(login_url = 'login')
 def dashboard(request):
+    """Render the user dashboard with the authenticated user's recent inquiries."""
     user_inquiry = Contact.objects.order_by('-create_date').filter(user_id=request.user.id)
     data = {
         'inquiries': user_inquiry
@@ -82,6 +85,7 @@ def dashboard(request):
     return render(request, 'accounts/dashboard.html', data)
 
 def logout(request):
+    """Log out the current user and return them to the home page."""
     if request.method == 'POST':
         auth.logout(request)
         return redirect('home')

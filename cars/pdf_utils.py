@@ -56,6 +56,7 @@ def parse_history_sections(html_content):
     return sections
 
 def add_watermark(canvas, doc):
+    """Apply a light diagonal AUTO MARKET watermark on each PDF page."""
     canvas.saveState()
     canvas.setFont("Helvetica", 50)
     canvas.setFillColorRGB(0.9, 0.9, 0.9)
@@ -64,6 +65,7 @@ def add_watermark(canvas, doc):
     canvas.drawCentredString(0, 0, "AUTO MARKET")
     canvas.restoreState()
 def generate_car_report(car):
+    """Build a styled PDF history report for the given car and return it as an HTTP response."""
     buffer = BytesIO()
     pdf = SimpleDocTemplate(
         buffer,

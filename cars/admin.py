@@ -4,14 +4,17 @@ from django.urls import reverse
 from .models import Car
 
 class CarAdmin(admin.ModelAdmin):
+    """Admin configuration for the Car model with image thumbnail and PDF report helpers."""
 
-    # Show thumbnail
+    # Show thumbnail in the changelist for quick visual identification.
     def thumbnail(self, object):
+        """Return a small HTML image element for the car's primary photo."""
         return format_html('<img src="{}" width="40" />', object.car_photo.url)
     thumbnail.short_description = 'Car Image'
 
-    # NEW: Generate PDF button
+    # Render a per-row action that links to the PDF history report view.
     def generate_report(self, obj):
+        """Return an anchor tag that opens the PDF report for this car in a new tab."""
         url = reverse("car_report_pdf", args=[obj.id])
         return format_html('<a class="button" href="{}" target="_blank">PDF Report</a>', url)
     generate_report.short_description = "Report"

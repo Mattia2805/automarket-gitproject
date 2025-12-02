@@ -8,6 +8,7 @@ from .pdf_utils import generate_car_report
 
 # List cars with pagination
 def cars(request):
+    """Render a paginated list of cars along with search facet data for filters."""
     cars = Car.objects.order_by('-created_date')
     paginator = Paginator(cars, 4)  # 4 cars per page
     page = request.GET.get('page')
@@ -34,6 +35,7 @@ def cars(request):
 
 # Single car detail view
 def car_detail(request, id):
+    """Display the details for a single car identified by primary key."""
     single_car = get_object_or_404(Car, pk=id)
 
     data = {
@@ -43,6 +45,7 @@ def car_detail(request, id):
 
 
 def search(request):
+    """Filter cars based on query-string parameters and render the search results page."""
     cars = Car.objects.order_by('-created_date')
 
     model_search = Car.objects.values_list('model', flat=True).distinct()
@@ -102,5 +105,6 @@ def search(request):
 
 @staff_member_required
 def car_report_pdf(request, car_id):
+    """Generate and stream a PDF history report for the given car to the browser."""
     car = get_object_or_404(Car, pk=car_id)
     return generate_car_report(car)

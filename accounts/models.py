@@ -1,3 +1,3 @@
 from django.db import models
 
-# Create your models here.
+# Placeholder for account-related models (e.g. user profiles or authentication extensions).

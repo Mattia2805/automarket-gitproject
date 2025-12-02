@@ -3,8 +3,9 @@ from datetime import datetime
 from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
 
-# Create your models here.
+# Core domain model for car listings.
 class Car(models.Model):
+    """Represents a single car listing with technical specs and marketing metadata."""
 
     city_choice = (
         ('Berat', 'Berat'),

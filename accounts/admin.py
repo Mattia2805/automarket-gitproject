@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+"""Admin configuration for account-related models.
+
+Currently no custom models are registered here; this module is kept for future extensions.
+"""
